@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#25352f"/>
+  <title>Guest Check-In | EventZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="checkin-page">
+  <main class="checkin-wrap">
+    <a class="invite-brand" href="/">EventZone</a>
+    <section id="checkinCard" class="checkin-card" aria-live="polite">
+      <span class="checkin-mark">E</span>
+      <p class="invite-eyebrow invite-eyebrow-dark">EVENT PASSPORT</p>
+      <h1 id="checkinTitle">Checking your pass</h1>
+      <p id="checkinMessage">Please wait while we confirm your arrival.</p>
+      <div id="checkinDetails" class="checkin-details" hidden>
+        <div><span>EVENT</span><strong id="checkinEvent"></strong></div>
+        <div><span>TABLE</span><strong id="checkinTable"></strong></div>
+        <div><span>DINNER</span><strong id="checkinMeal"></strong></div>
+        <div id="dietaryAlert" class="dietary-alert" hidden><span>CATERING NOTE</span><strong id="checkinDietary"></strong></div>
+      </div>
+      <a class="checkin-home" href="/">EventZone</a>
+    </section>
+  </main>
+  <script src="checkin.js"></script>
+</body>
+</html>

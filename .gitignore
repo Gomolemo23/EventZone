@@ -1,0 +1,8 @@
+node_modules/
+# Local SQLite database: auto-created with seed data on first run, holds guest data
+eventzone.sqlite
+*.sqlite
+.vscode/
+.env
+.DS_Store
+npm-debug.log*

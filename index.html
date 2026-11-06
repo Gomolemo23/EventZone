@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EventZone — Bespoke Event Planning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ROLE GATE SELECTOR -->
+  <div id="roleGate">
+    <div class="gate-inner">
+      <div class="gate-logo">EventZone</div>
+      <div class="gate-sub">Welcome — how would you like to continue?</div>
+      <div class="gate-cards">
+        <div class="gate-card" id="gateGuest" onclick="selectRole('guest')">
+          <div class="gate-card-icon">🌸</div>
+          <h3>I'm a Guest</h3>
+          <p>Browse services, explore packages, and book your custom dream event.</p>
+        </div>
+        <div class="gate-card" id="gateAdmin" onclick="selectRole('admin')">
+          <div class="gate-card-icon">🔐</div>
+          <h3>Staff / Admin</h3>
+          <p>Access granted to EventZone members only.</p>
+        </div>
+      </div>
+      <button class="gate-enter" id="gateEnter" onclick="proceedGate()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div id="adminLogin">
+    <div class="login-card">
+      <div class="login-logo">EventZone Admin</div>
+      <div class="login-sub">Staff secure terminal authentication</div>
+      <label class="login-label">Username</label>
+      <input class="login-input" type="text" id="lUser" value="admin"/>
+      <label class="login-label">Security Key / Password</label>
+      <input class="login-input" type="password" id="lPass" value="admin"/>
+      <div class="login-error" id="lErr">Invalid system authorization credentials.</div>
+      <button class="login-btn" onclick="doLogin()">Authenticate Access →</button>
+      <div class="login-back" onclick="backGate()">← Return to Role Selection</div>
+    </div>
+  </div>
+
+  <!-- CUSTOMER FACING SITE -->
+  <div id="customerSite">
+    <nav id="custNav">
+      <div class="container nav-inner">
+        <div class="logo">EventZone</div>
+        <ul class="nav-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Curated Packages</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#book">Reserve Consultation</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-gallery" aria-label="Event slideshow">
+        <img class="hero-slide active" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Luxury wedding setup" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80" alt="Elegant gala event" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Art exhibition event" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80" alt="Luxury dinner party" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80" alt="Garden celebration" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Opulent event design" />
+        <img class="hero-slide" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80" alt="Champagne reception" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="tag">Bespoke Event Curators</span>
+          <h1>Elegance written in <em>petals & moments</em></h1>
+          <p>We transform spaces and milestones into breathtaking, fluid experiences meticulously tailored to your legacy narrative.</p>
+          <div class="hero-cta">
+            <a href="#book" class="btn btn-primary">Book Consultation</a>
+            <a href="#services" class="btn btn-outline">Explore Offerings</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num">250+</div>
+              <div class="stat-label">Events Planned</div>
+            </div>
+            <div>
+              <div class="stat-num">99.4%</div>
+              <div class="stat-label">Flawless Delivery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" class="about-section">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <span class="tag">About Us</span>
+          <h2>We create unforgettable celebrations with intention, grace, and precision.</h2>
+          <p>EventZone is a boutique event planning studio that blends luxury design, thoughtful hospitality, and seamless coordination to make every milestone feel elevated.</p>
+          <p>From intimate gatherings to grand statement occasions, we shape every experience around your story, your guests, and the atmosphere you want to leave behind.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-title">Why clients choose us</div>
+          <ul class="about-list">
+            <li>Tailored design concepts for every event style</li>
+            <li>Dedicated coordination from planning to execution</li>
+            <li>Thoughtful vendor partnerships and premium guest experiences</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase" class="showcase-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Signature Moments</span>
+          <h2>Gallery of elegantly curated events</h2>
+          <p>Each celebration is shaped around mood, texture, and personal storytelling — creating immersive experiences guests remember long after the final toast.</p>
+        </div>
+
+        <div class="showcase-slider" aria-live="polite">
+          <button class="showcase-arrow showcase-prev" type="button" aria-label="Previous event">←</button>
+
+          <div class="showcase-viewport">
+            <article class="showcase-slide active">
+              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Luxury garden wedding with floral decor" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Garden Estate</span>
+                  <span>150 Guests</span>
+                </div>
+                <h3>Garden Wedding</h3>
+                <p>A romantic outdoor ceremony layered with soft florals, warm candlelight, and sculptural reception styling that made the entire evening feel intimate and cinematic.</p>
+                <ul class="showcase-features">
+                  <li>Floral installation</li>
+                  <li>Dining styling</li>
+                  <li>Guest flow planning</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80" alt="Elegant gala event with ambient lighting" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Luxury Gala</span>
+                  <span>320 Guests</span>
+                </div>
+                <h3>Black Tie Gala</h3>
+                <p>We created a polished, high-impact evening with dramatic lighting, premium hospitality touches, and a refined event flow designed for a sophisticated crowd.</p>
+                <ul class="showcase-features">
+                  <li>Lighting design</li>
+                  <li>VIP guest experience</li>
+                  <li>Stage styling</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Baby shower styled with pastel decor and table settings" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Private Celebration</span>
+                  <span>60 Guests</span>
+                </div>
+                <h3>Pastel Baby Shower</h3>
+                <p>A softly layered celebration combining delicate florals, playful styling, and carefully considered table artistry that felt joyful, refined, and deeply personal.</p>
+                <ul class="showcase-features">
+                  <li>Theme styling</li>
+                  <li>Tablescape design</li>
+                  <li>Guest hosting</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80" alt="Luxury dinner party with elegant place settings" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Anniversary Soirée</span>
+                  <span>90 Guests</span>
+                </div>
+                <h3>Elegant Dinner Party</h3>
+                <p>Warm textures, modern table styling, and layered ambient details created a refined evening where every guest felt part of a beautifully considered experience.</p>
+                <ul class="showcase-features">
+                  <li>Hosting experience</li>
+                  <li>Custom décor</li>
+                  <li>Cocktail ambience</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80" alt="Sunset wedding reception with lush orange lighting" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Sunset Reception</span>
+                  <span>180 Guests</span>
+                </div>
+                <h3>Golden Hour Celebration</h3>
+                <p>We blended warm sunset tones, layered lighting, and sculpted florals to create an immersive setting that felt both romantic and effortlessly modern.</p>
+                <ul class="showcase-features">
+                  <li>Lighting mood</li>
+                  <li>Reception styling</li>
+                  <li>Guest ambiance</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80" alt="Art exhibition event with gallery installation" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Art Collection</span>
+                  <span>240 Guests</span>
+                </div>
+                <h3>Gallery Opening</h3>
+                <p>An elevated gallery experience combining immersive lighting, premium hospitality, and curated spatial flow that let every installation speak beautifully.</p>
+                <ul class="showcase-features">
+                  <li>Display flow</li>
+                  <li>Guest storytelling</li>
+                  <li>Curated ambiance</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="showcase-slide">
+              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80" alt="Luxury corporate retreat event" />
+              <div class="showcase-body">
+                <div class="showcase-meta">
+                  <span>Executive Retreat</span>
+                  <span>120 Guests</span>
+                </div>
+                <h3>Corporate Escape</h3>
+                <p>A thoughtfully designed leadership retreat featuring intimate lounges, elegant meeting spaces, and a polished hospitality touch that balanced strategy with comfort.</p>
+                <ul class="showcase-features">
+                  <li>Executive lounges</li>
+                  <li>Brand styling</li>
+                  <li>High-touch hosting</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <button class="showcase-arrow showcase-next" type="button" aria-label="Next event">→</button>
+        </div>
+
+        <div class="showcase-dots" aria-label="Event gallery navigation">
+          <button class="showcase-dot active" type="button" aria-label="Show slide 1"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 2"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 3"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 4"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 5"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 6"></button>
+          <button class="showcase-dot" type="button" aria-label="Show slide 7"></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">What We Do</span>
+          <h2>Immersive Design Packages</h2>
+          <p>From conceptual spatial architecture to final precision coordination.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+          
+            <h3>Luxury Weddings</h3>
+            <p>Complete aesthetic direction, botanical design, vendor architecture, and timeline orchestration.</p>
+            <div class="service-price">From R12,500</div>
+          </div>
+          <div class="service-card">
+            
+            <h3>High-Profile Galas</h3>
+            <p>Corporate storytelling, non-profit benefit experiences, premium staging, and luxury hospitality mechanics.</p>
+            <div class="service-price">From R10,000</div>
+          </div>
+          <div class="service-card">
+           
+            <h3>Private Soirées</h3>
+            <p>Intimate experiential dinners, birthdays, and anniversaries built around premium culinary theater.</p>
+            <div class="service-price">From R6,200</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Pricing Architecture</span>
+          <h2>Select Your Engagement Scale</h2>
+        </div>
+        <div class="packages-grid">
+          <div class="pkg-card">
+            <div class="pkg-name">Essential Curation</div>
+            <div class="pkg-price">R6,500</div>
+            <ul class="pkg-features">
+              <li>Month-of coordination asset allocation</li>
+              <li>Floorplan optimization guidelines</li>
+              <li>Standard vendor interface handling</li>
+            </ul>
+            <a href="#book" class="btn btn-outline pkg-btn">Select Tier</a>
+          </div>
+          <div class="pkg-card featured">
+            <div class="pkg-badge">Most Requested</div>
+            <div class="pkg-name">Signature Editorial</div>
+            <div class="pkg-price">R14,000</div>
+            <ul class="pkg-features">
+              <li>Full-lifecycle concept design & spatial execution</li>
+              <li>Unlimited access tier communications dashboard</li>
+              <li>Custom vendor RFP generation & negotiations</li>
+            </ul>
+            <a href="#book" class="btn btn-primary pkg-btn">Select Tier</a>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-name">The Sovereign Estate</div>
+            <div class="pkg-price">R28,500</div>
+            <ul class="pkg-features">
+              <li>Multi-day property transform design engine</li>
+              <li>Dedicated concierge teams for high-profile guests</li>
+              <li>Bespoke structural fabrication overrides</li>
+            </ul>
+            <a href="#book" class="btn btn-outline pkg-btn">Select Tier</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Loved By Clients</span>
+          <h2>What People Said After Their Event</h2>
+          <p>These are a few testimonials from guests who already trusted us with their celebration.</p>
+        </div>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>“Every detail felt effortless. Our garden wedding looked like a dream and the timeline was flawless.”</p>
+            <div class="review-author">— Nandi & Theo</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>“The team transformed our venue into something beyond what we imagined. Guests are still talking about it.”</p>
+            <div class="review-author">— Aisha M.</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>“Professional, calm, and incredibly creative. They made our anniversary dinner feel cinematic and intimate.”</p>
+            <div class="review-author">— Daniel & Leila</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★</div>
+            <p>“From the floral design to the guest flow, everything was beautifully handled from start to finish.”</p>
+            <div class="review-author">— Priya S.</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>“Our gala felt elevated, polished, and unforgettable. The team delivered beyond expectations.”</p>
+            <div class="review-author">— Michael R.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <span class="tag">Contact Us</span>
+          <h2>Let’s talk about your next celebration.</h2>
+          <p>Whether you’re planning a wedding, gala, or intimate gathering, our team is ready to help you begin.</p>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <span>+27 81 234 5678</span>
+          </div>
+          <div class="contact-item">
+            <strong>Email</strong>
+            <span>support@eventzone.co.za</span>
+          </div>
+          <div class="contact-item">
+            <strong>Location</strong>
+            <span>Johannesburg, South Africa</span>
+          </div>
+          <div class="contact-item">
+            <strong>Availability</strong>
+            <span>Monday - Friday: 9AM - 5PM
+              <br>Saturday: 10AM - 2PM</br>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Initiate Coordination</span>
+          <h2>Secure Your Date Window</h2>
+        </div>
+        <div class="form-card">
+          <div id="bookingFormContainer">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="formName" placeholder="Evelyn Sinclair"/>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="formEmail" placeholder="evelyn@domain.com"/>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Event Category</label>
+                <select id="formType">
+                  <option value="Wedding">Luxury Wedding</option>
+                  <option value="Gala">High-Profile Gala</option>
+                  <option value="Soiree">Private Soirée</option>
+                  <option value="Birthday">Birthday Party</option>
+                  <option value="Corporate">Corporate Event</option>
+                  <option value="BabyShower">Baby Shower</option>
+                  <option value="ArtExhibition">Art Exhibition</option>
+                   <option value="ArtExhibition">Charity Event</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Target Date</label>
+                <input type="date" id="formDate"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Vision Notes & Scale Scope</label>
+              <textarea id="formNotes" placeholder="Describe the atmosphere, guest count scale, and unique expectations..."></textarea>
+            </div>
+            <button class="btn btn-primary form-submit" onclick="submitBookingForm()">Transmit Booking Request ↗</button>
+          </div>
+          <div id="bookingSuccessMessage" class="form-success">
+            <div style="font-size:3rem; margin-bottom:1rem;">✨</div>
+            <h3>Reservation Logged</h3>
+            <p>Your inquiry structural layout has been successfully fed into our operational database query queue.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo footer-logo">EventZone</div>
+            <p>Luxury event planning, design direction, and guest experiences tailored for weddings, galas, and life’s most meaningful moments.</p>
+            <div class="footer-socials">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4.5"></circle>
+                  <circle cx="17.5" cy="6.5" r="1"></circle>
+                </svg>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H8v3h3v7h3v-7h2.5l.5-3H14V8z"></path>
+                </svg>
+              </a>
+              <a href="https://wa.me/27812345678" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5.5 19.5 6.2 15A8.5 8.5 0 1 1 19.5 6.2l-4.5 1.3a1.2 1.2 0 0 0-.8 1.2v.2a1.2 1.2 0 0 1-.4.9l-1.3 1.2a6.3 6.3 0 0 0 2.3 2.3l1.2-1.3a1.2 1.2 0 0 1 .9-.4h.2a1.2 1.2 0 0 0 1.2-.8z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Services</h4>
+            <ul>
+              <li>Luxury Weddings</li>
+              <li>Corporate Galas</li>
+              <li>Private Celebrations</li>
+              <li>Full Styling & Styling Direction</li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Visit</h4>
+            <ul>
+              <li>Johannesburg, South Africa</li>
+              <li>+27 81 234 5678</li>
+              <li>support@eventzone.co.za</li>
+              <li>Mon–Sat | 9:00–17:00</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 EventZone. Crafted for memorable celebrations.</p>
+          <div class="back-to-gate" onclick="logOut()">← Back to Role Gate Selector</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  
+  <div id="adminDashboard">
+    <div class="ad-nav">
+      <div class="ad-logo">EventZone <sub>Admin Console</sub></div>
+      <div class="ad-nav-right">
+        <span class="ad-badge">DB Live Access Node</span>
+        <div class="ad-logout" onclick="logOut()">Exit Console ⎋</div>
+      </div>
+    </div>
+
+    <div class="ad-body">
+      <div class="ad-sidebar">
+        <div class="sidebar-section">Analytical Infrastructure</div>
+        <div class="ad-nav-item active" onclick="switchPage('overview')" id="nav-overview">System Overview</div>
+        <div class="ad-nav-item" onclick="switchPage('bookings')" id="nav-bookings">Pipeline Registry</div>
+        <div class="ad-nav-item" onclick="switchPage('guestExperience')" id="nav-guestExperience">Guest Experience</div>
+        <div class="ad-nav-item" onclick="switchPage('checkinDesk')" id="nav-checkinDesk">Check-in Desk</div>
+        <div class="ad-nav-item" onclick="switchPage('activity')" id="nav-activity">Activity Audit</div>
+        <div class="sidebar-section">Relational Core Engine</div>
+        <div class="ad-nav-item" onclick="switchPage('sqlView')" id="nav-sqlView">SQL Schema Engine</div>
+      </div>
+
+      <div class="ad-main">
+        <div id="page-overview" class="ad-page active">
+          <div class="ad-page-header">
+            <h1>Operational Analytics Control Console</h1>
+            <p>System metrics derived directly from active booking data and event demand.</p>
+          </div>
+
+          <div class="ad-stats-row">
+            <div class="stat-card rose">
+              <div class="stat-label">Pending Requests</div>
+              <div class="stat-val" id="statPendingCount">0</div>
+              <div class="stat-trend" id="pendingTrend">—</div>
+            </div>
+            <div class="stat-card gold">
+              <div class="stat-label">Confirmed Events</div>
+              <div class="stat-val" id="statConfirmedCount">0</div>
+              <div class="stat-trend" id="confirmedTrend">—</div>
+            </div>
+            <div class="stat-card sage">
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-val" id="statRevenue">R0</div>
+              <div class="stat-trend" id="revenueTrend">—</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-label">Conversion Rate</div>
+              <div class="stat-val" id="statConversion">0%</div>
+              <div class="stat-trend" id="conversionTrend">—</div>
+            </div>
+          </div>
+
+          <div class="chart-grid">
+            <div class="ad-panel">
+              <div class="panel-head">
+                <h3>Revenue by Month</h3>
+              </div>
+              <div class="panel-body">
+                <div class="bar-chart" id="revenueChart"></div>
+              </div>
+            </div>
+
+            <div class="ad-panel">
+              <div class="panel-head">
+                <h3>Bookings by Event Type</h3>
+              </div>
+              <div class="panel-body type-chart-wrap">
+                <div class="donut-chart" id="typeDonut"></div>
+                <div class="type-list" id="typeList"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ad-panel calendar-panel">
+            <div class="panel-head">
+              <h3>Booked Date Planner</h3>
+              <div class="calendar-hint">Click any date to mark or unmark it as booked</div>
+            </div>
+            <div class="panel-body">
+              <div class="calendar-toolbar">
+                <button class="calendar-nav" type="button" onclick="changeCalendarMonth(-1)">←</button>
+                <div class="calendar-month-label" id="calendarMonthLabel"></div>
+                <button class="calendar-nav" type="button" onclick="changeCalendarMonth(1)">→</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              <div class="calendar-grid" id="calendarGrid"></div>
+              <div class="calendar-legend">
+                <span><span class="legend-dot booked"></span>Booked</span>
+                <span><span class="legend-dot"></span>Open</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="page-bookings" class="ad-page">
+          <div class="ad-page-header">
+            <h1>Active Registry</h1>
+            <p>Reviewing all customers who have submitted inputs via the forms.</p>
+          </div>
+          <div class="ad-panel">
+            <div class="panel-head">
+              <h3>Relational Tuple Elements</h3>
+              <div class="q-chips">
+                <div class="q-chip booking-filter-chip active" onclick="setStatusFilter('all', this)">All</div>
+                <div class="q-chip booking-filter-chip" onclick="setStatusFilter('Pending', this)">Pending</div>
+                <div class="q-chip booking-filter-chip" onclick="setStatusFilter('Confirmed', this)">Accepted</div>
+                <div class="q-chip booking-filter-chip" onclick="setStatusFilter('Declined', this)">Declined</div>
+              </div>
+            </div>
+            <div class="tbl-wrap">
+              <table class="ad-tbl">
+                <thead>
+                  <tr>
+                    <th>Lead Name</th>
+                    <th>Email Address</th>
+                    <th>Event Blueprint</th>
+                    <th>Target Execution Date</th>
+                    <th>Status Parameter</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingsTableBody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-guestExperience" class="ad-page">
+          <div class="ad-page-header">
+            <h1>Guest Experience</h1>
+            <p>Event invitations, RSVP headcount, catering selections, and live entrance check-in.</p>
+          </div>
+          <div class="ad-stats-row guest-stats-row">
+            <div class="stat-card rose"><div class="stat-label">Inviteable Events</div><div class="stat-val" id="passportEventCount">0</div></div>
+            <div class="stat-card gold"><div class="stat-label">Guest Headcount</div><div class="stat-val" id="passportRsvpCount">0</div></div>
+            <div class="stat-card sage"><div class="stat-label">Arrived</div><div class="stat-val" id="passportArrivals">0</div></div>
+            <div class="stat-card blue"><div class="stat-label">Catering Notes</div><div class="stat-val" id="passportDietaryCount">0</div></div>
+          </div>
+          <div class="ad-panel attendance-panel">
+            <div class="panel-head"><h3>Live attendance</h3><span id="attendanceUpdated" class="attendance-updated">Updating every 15 seconds</span></div>
+            <div id="attendanceChart" class="attendance-chart"><p class="guest-empty">Loading attendance...</p></div>
+          </div>
+          <div class="guest-event-grid" id="guestEventGrid"><p class="guest-empty">Loading confirmed events...</p></div>
+        </div>
+
+        <div id="page-checkinDesk" class="ad-page">
+          <div class="ad-page-header">
+            <h1>Guest Check-in Desk</h1>
+            <p>Scan a guest's event passport to record arrival and view their seating and catering details.</p>
+          </div>
+          <div class="checkin-desk-layout">
+            <section class="ad-panel staff-scanner-panel">
+              <div class="panel-head"><h3>Scan event passport</h3><span class="attendance-updated">Camera access required</span></div>
+              <div class="staff-scanner-content">
+                <div id="staffQrReader" class="staff-qr-reader"></div>
+                <div class="scanner-actions">
+                  <label for="cameraSelect">Camera</label>
+                  <select id="cameraSelect" aria-label="Choose a camera"><option value="">Choose after camera access</option></select>
+                  <button id="startScanner" type="button" class="scanner-primary">Start camera</button>
+                  <button id="stopScanner" type="button" class="scanner-secondary" disabled>Stop camera</button>
+                </div>
+                <label class="scanner-upload" for="qrImageFile"><span>Scan a saved QR photo</span><input id="qrImageFile" type="file" accept="image/*"/></label>
+                <p id="scannerStatus" class="scanner-status" role="status">Choose Start camera and allow camera access to scan a guest's QR pass.</p>
+              </div>
+            </section>
+            <section id="staffCheckinResult" class="staff-checkin-result" aria-live="polite" hidden>
+              <p class="invite-eyebrow invite-eyebrow-dark">PASSPORT SCANNED</p>
+              <h2 id="staffGuestName">Guest name</h2>
+              <p id="staffEventInfo" class="staff-event-info"></p>
+              <div class="staff-result-grid">
+                <div><span>TABLE</span><strong id="staffTable"></strong></div>
+                <div><span>DINNER</span><strong id="staffMeal"></strong></div>
+                <div id="staffDietaryRow" class="staff-dietary-row" hidden><span>CATERING NOTE</span><strong id="staffDietary"></strong></div>
+              </div>
+              <p id="staffCheckinTime" class="staff-checkin-time"></p>
+              <button id="scanNextGuest" type="button" class="scanner-primary">Scan next guest</button>
+            </section>
+          </div>
+        </div>
+
+        <div id="page-activity" class="ad-page">
+          <div class="ad-page-header">
+            <h1>Security & Activity Audit Trail</h1>
+            <p>Track critical actions, login events, and operational changes in the booking system.</p>
+          </div>
+
+          <div class="ad-panel">
+            <div class="panel-head">
+              <h3>Recent System Events</h3>
+            </div>
+            <div class="tbl-wrap">
+              <table class="ad-tbl">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Actor</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="activityTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-sqlView" class="ad-page">
+          <div class="ad-page-header">
+            <h1>Live SQL Schema Execution Simulation</h1>
+            <p>Review the exact structural database syntax powering this data visualizer layer.</p>
+          </div>
+          <div class="ad-panel">
+            <div class="panel-head">
+              <h3>Query Template Engine Selection Matrix</h3>
+            </div>
+            <div class="panel-body">
+              <div class="q-chips">
+                <div class="q-chip active" onclick="loadSqlQuery('schema', this)">Initialization Schema Setup</div>
+                <div class="q-chip" onclick="loadSqlQuery('analytics', this)">Revenue Aggregate Matrix</div>
+                <div class="q-chip" onclick="loadSqlQuery('filter', this)">Conditional Status Pipeline Pull</div>
+              </div>
+              <div class="sql" id="sqlOutputBlock">Loading engine...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div id="drawer">
+    <div class="drawer-bd" onclick="closeDrawer()"></div>
+    <div class="drawer-pane">
+      <button class="d-close" onclick="closeDrawer()">✕ Close View</button>
+      <div style="margin-top:2rem;">
+        <span class="badge b-pending" id="drawerStatus" style="margin-bottom:1rem;">PENDING EVALUATION</span>
+        <h2 id="drawerTitle" style="color:var(--ink); font-size:1.8rem; margin-bottom:.5rem;">Client Profile</h2>
+        <p id="drawerEmail" style="color:var(--muted); font-size:.9rem; margin-bottom:2rem;">client@domain.com</p>
+
+        <div class="d-sec">
+          <h4>Metadata Properties Matrix</h4>
+          <div class="d-row"><div class="d-key">Target Blueprint Scale</div><div class="d-val" id="drawerType">Wedding</div></div>
+          <div class="d-row"><div class="d-key">System Logged Target Date</div><div class="d-val" id="drawerDate">2026-10-12</div></div>
+        </div>
+
+        <div class="d-sec">
+          <h4>Raw Payload Text Data Field</h4>
+          <div style="background:var(--cream); border:1px solid var(--border); border-radius:8px; padding:1rem; color:var(--ink); font-size:.85rem; font-style:italic;" id="drawerNotes">
+            No note payload parameters detected inside execution string.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

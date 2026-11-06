@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#25352f"/>
+  <title>Event Invitation | EventZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="invite-page">
+  <header class="invite-nav">
+    <a class="invite-brand" href="/">EventZone</a>
+    <span>AN EVENT MADE FOR YOU</span>
+  </header>
+  <main class="invite-main">
+    <section class="invite-hero">
+      <img id="eventHero" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=85" alt="An elegant celebration setting"/>
+      <div class="invite-hero-shade"></div>
+      <div class="invite-hero-copy">
+        <p class="invite-eyebrow">YOU ARE INVITED</p>
+        <h1 id="eventTitle">A celebration awaits</h1>
+        <p id="eventHost" class="invite-host">Presented by EventZone</p>
+        <div class="invite-date-pill"><span id="eventDate">Loading event details</span><span id="eventTime"></span></div>
+      </div>
+    </section>
+
+    <section class="invite-content">
+      <div class="invite-story">
+        <p class="invite-eyebrow invite-eyebrow-dark">A MOMENT TO REMEMBER</p>
+        <h2>Save your place<br/>at the table.</h2>
+        <p class="invite-intro">We would love to celebrate with you. Let us know you can make it, choose your dinner, and we will have everything ready for your arrival.</p>
+        <div class="invite-location">
+          <span class="invite-location-mark" aria-hidden="true">⌖</span>
+          <div>
+            <strong id="eventVenue">Venue to be announced</strong>
+            <p id="eventAddress"></p>
+            <p id="eventDirections" class="invite-directions"></p>
+            <a id="directionsLink" class="invite-text-link" href="#" target="_blank" rel="noreferrer" hidden>Open directions ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="invite-rsvp-panel">
+        <div class="invite-form-heading">
+          <span class="invite-step">01 / RSVP</span>
+          <h2>Will you join us?</h2>
+        </div>
+        <form id="rsvpForm">
+          <label for="guestName">Your name</label>
+          <input id="guestName" name="name" autocomplete="name" maxlength="100" required/>
+          <div class="invite-field-row">
+            <div>
+              <label for="guestEmail">Email</label>
+              <input id="guestEmail" name="email" type="email" autocomplete="email" maxlength="120" required/>
+            </div>
+            <div>
+              <label for="guestPhone">WhatsApp number</label>
+              <input id="guestPhone" name="phone" type="tel" autocomplete="tel" maxlength="32" placeholder="+27 81 234 5678" required/>
+            </div>
+          </div>
+          <label for="mealChoice">Dinner selection</label>
+          <select id="mealChoice" name="meal_choice" required>
+            <option value="">Choose your meal</option>
+            <option>Herb-roasted chicken</option>
+            <option>Seared salmon</option>
+            <option>Wild mushroom risotto</option>
+            <option>Braised beef short rib</option>
+            <option>Roasted vegetable lasagna</option>
+            <option>Butternut squash gnocchi</option>
+            <option>Moroccan chickpea tagine (Vegan)</option>
+            <option>Grilled halloumi with couscous</option>
+            <option>Garden vegetable quinoa bowl (Vegan, Gluten-free)</option>
+            <option>Lemon-herb tofu with rice (Vegan, Gluten-free)</option>
+          </select>
+          <label for="dietaryNeeds">Dietary needs <span>(optional)</span></label>
+          <textarea id="dietaryNeeds" name="dietary_needs" maxlength="400" rows="3" placeholder="Allergies or dietary requirements"></textarea>
+          <button class="invite-submit" id="rsvpSubmit" type="submit">Send my RSVP <span aria-hidden="true">↗</span></button>
+          <p id="rsvpError" class="invite-error" role="alert" hidden></p>
+          <p class="invite-privacy">Your meal and dietary details are shared with the event team for catering.</p>
+        </form>
+
+        <section id="guestPass" class="guest-pass" hidden aria-live="polite">
+          <p class="invite-step">YOUR DIGITAL EVENT PASSPORT</p>
+          <h2 id="passGreeting">You're on the list.</h2>
+          <div class="pass-ticket">
+            <img id="passQr" alt="Your personal event check-in QR code"/>
+            <div>
+              <span class="pass-label">YOUR TABLE</span>
+              <strong id="passTable">--</strong>
+              <p id="passMeal"></p>
+              <p id="passDietary" class="pass-dietary"></p>
+            </div>
+          </div>
+          <a id="whatsappReminder" class="invite-whatsapp" target="_blank" rel="noreferrer">Request a WhatsApp reminder ↗</a>
+          <button class="invite-print" type="button" onclick="window.print()">Print my pass</button>
+          <p class="invite-privacy">Keep this QR code ready at the entrance. A scan will confirm your arrival.</p>
+        </section>
+      </div>
+    </section>
+    <footer class="invite-footer"><span>EventZone</span><span>Thoughtfully planned. Beautifully remembered.</span></footer>
+  </main>
+  <script src="guest.js"></script>
+</body>
+</html>
